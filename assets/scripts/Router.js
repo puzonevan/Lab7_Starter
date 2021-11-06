@@ -69,20 +69,22 @@ export class Router {
 
     if(this[page]){
       let hash;
-      if(page === "home"){
+      if(page == "home"){
         hash = "";
       }
       else{
         hash = `#${page}`;
       }
-
-      if(!statePopped && window.location.hash !== hash){
-        history.pushState(statePopped, `https://puzonevan.github.io/Lab7_Starter/${hash}`);
-        this[page]();
+      
+      if(!statePopped && window.location.hash != hash){
+        history.pushState({"page": page} , page, `${window.location.origin}${hash}`);
+        
       }
+      this[page]();
     }
     else{
       console.log('Error');
+      return;
     }
   }
 }
